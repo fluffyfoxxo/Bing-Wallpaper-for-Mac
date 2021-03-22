@@ -1,4 +1,4 @@
-# Bing Wallpapaer for Mac
+# UHD Bing Wallpapaer for Mac
 A simple Python script capable of batch-downloading and setting UHD version of Bing image of the day as wallpaper on macOS.
 
 ## Usage
