@@ -1,13 +1,14 @@
 #!/usr/bin/env python
 
-import urllib, urllib2, json, sys
+import urllib, urllib2, json, sys, time
 from os.path import join, expanduser, isfile, exists
-from os import makedirs
+from os import makedirs, remove
+from time import sleep
 
 
 # Configurations
 # Location to save downloaded wallpapers
-# Leave the IMAGE_DIR empty to use default directory /Users/USERNAME/Pictures/BingWallpaper
+# Leave the IMAGE_DIR empty to use default directory /Users/USERNAME/.Trash
 # Or you can set your own custom directory
 IMAGE_DIR = ''
 # ISO country code
@@ -27,7 +28,7 @@ def get_wallpaper_path(file_name):
     if '' != IMAGE_DIR.strip():
         dir = IMAGE_DIR
     else:
-        dir = join(expanduser("~"), 'Pictures/BingWallpaper')
+        dir = join(expanduser("~"), '.Trash')
 
     if not exists(dir):
         makedirs(dir)
@@ -58,6 +59,10 @@ def set_wallpaper(file_path):
         import subprocess
         subprocess.Popen(SCRIPT%file_path, shell=True)
         print('Wallpaper set to ' + file_path)
+        # Delete image file
+        sleep(1)
+        remove(file_path)
+        print('Image file is deleted')
 
 
 # Display help message
@@ -122,10 +127,12 @@ def main():
         print('Downloading...')
         for i in range(len(images)):
             url = 'http://www.bing.com' + images[i]['url']
+            # Download UHD instead of 1080p
+            urluhd = url.replace("1920x1080", "UHD")
             if flag_download_only:
-                download_image(url, True)
+                download_image(urluhd, True)
             else:
-                download_image(url)
+                download_image(urluhd)
 
     except urllib2.HTTPError, e:
         print('Error ' + str(e.code) + '. Please try again later...')
