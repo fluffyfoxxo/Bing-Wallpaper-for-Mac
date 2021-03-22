@@ -18,6 +18,8 @@ python bing.py -d
 
 Use `-h` or `--help` to display help message.
 
+You can also download the automation from [Releases](https://github.com/fluffyfoxxo/Bing-Wallpaper-for-Mac/releases) and make it run automatically [when you log in](https://support.apple.com/guide/mac-help/open-items-automatically-when-you-log-in-mh15189/mac) or [on schedule](https://www.computerworld.com/article/3322125/how-to-automate-your-mac-with-calendar.html).
+
 ## License
 Licensed under the MIT License.
 
