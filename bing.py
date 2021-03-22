@@ -8,7 +8,7 @@ from time import sleep
 
 # Configurations
 # Location to save downloaded wallpapers
-# Leave the IMAGE_DIR empty to use default directory /Users/USERNAME/.Trash
+# Leave the IMAGE_DIR empty to use default directory /Users/USERNAME/Pictures/BingWallpaper
 # Or you can set your own custom directory
 IMAGE_DIR = ''
 # ISO country code
@@ -28,7 +28,7 @@ def get_wallpaper_path(file_name):
     if '' != IMAGE_DIR.strip():
         dir = IMAGE_DIR
     else:
-        dir = join(expanduser("~"), '.Trash')
+        dir = join(expanduser("~"), 'Pictures/BingWallpaper')
 
     if not exists(dir):
         makedirs(dir)
