@@ -30,6 +30,7 @@ def set_wallpaper(file_path):
     time.sleep(1)
     #remove(file_path)
 
+
 def main():
     url = 'http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1'
     response = urllib2.urlopen(url)
@@ -39,6 +40,7 @@ def main():
     url = 'http://www.bing.com' + images[0]['url']
     urluhd = url.replace("1920x1080", "UHD")
     download_image(urluhd)
+
 
 if __name__ == '__main__':
     main()
