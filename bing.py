@@ -6,8 +6,10 @@ from os.path import join, expanduser
 
 
 SCRIPT = """/usr/bin/osascript<<END
-tell application "Finder"
-set desktop picture to POSIX file "%s"
+tell application "System Events"
+    tell every desktop
+        set picture to "%s"
+    end tell
 end tell
 END"""
 
