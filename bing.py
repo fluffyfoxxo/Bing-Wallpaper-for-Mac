@@ -31,6 +31,7 @@ def set_wallpaper(file_path):
     subprocess.Popen(SCRIPT%file_path, shell=True)
     time.sleep(1)
     #remove(file_path)
+    subprocess.Popen("killall Dock", shell=True)
 
 
 def main():
@@ -38,7 +39,6 @@ def main():
     response = urllib2.urlopen(url)
     json_data = json.load(response)
     images = json_data['images']
-    print(images)
     url = 'http://www.bing.com' + images[0]['url']
     urluhd = url.replace("1920x1080", "UHD")
     download_image(urluhd)
