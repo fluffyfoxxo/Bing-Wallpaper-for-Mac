@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 
-import urllib, urllib2, json, sys, time
+import urllib.request, json, sys, time
 from os.path import join, expanduser
-#from os import remove
 
 
 SCRIPT = """/usr/bin/osascript<<END
@@ -22,23 +21,23 @@ def get_wallpaper_path():
 
 def download_image(url):
     file_path = get_wallpaper_path()
-    urllib.urlretrieve(url, file_path)
+    urllib.request.urlretrieve(url, file_path)
     set_wallpaper(file_path)
 
 
 def set_wallpaper(file_path):
     import subprocess
     subprocess.Popen(SCRIPT%file_path, shell=True)
-    time.sleep(1)
-    #remove(file_path)
     subprocess.Popen("killall Dock", shell=True)
+    #time.sleep(1); from os import remove; remove(file_path)
 
 
 def main():
-    url = 'http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1'
-    response = urllib2.urlopen(url)
+    url = 'http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=zh-CN'
+    response = urllib.request.urlopen(url)
     json_data = json.load(response)
     images = json_data['images']
+    print(images)
     url = 'http://www.bing.com' + images[0]['url']
     urluhd = url.replace("1920x1080", "UHD")
     download_image(urluhd)
